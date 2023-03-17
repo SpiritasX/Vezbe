@@ -20,6 +20,11 @@ public class StudentMuzicar extends Student implements jeIzvodjac {
 
     @Override
     public String nastup(Festival festival) {
-        return getIme() + " " + getPrezime() + " " + getVrstaMuzike();
+        return festival.nastup(this);
+    }
+
+    @Override
+    public String toString() {
+        return this.getIme() + " " + this.getPrezime() + " " + this.getVrstaMuzike();
     }
 }

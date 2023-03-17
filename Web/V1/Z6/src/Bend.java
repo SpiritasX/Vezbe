@@ -20,6 +20,11 @@ public class Bend implements jeIzvodjac {
 
     @Override
     public String nastup(Festival festival) {
-        return getNaziv();
+        return festival.nastup(this);
+    }
+
+    @Override
+    public String toString() {
+        return this.naziv;
     }
 }

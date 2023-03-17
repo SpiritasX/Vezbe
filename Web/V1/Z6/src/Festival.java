@@ -76,14 +76,14 @@ public class Festival {
     public String nastup(jeIzvodjac izvodjac) {
         for (Par par : raspored)
             if (par.getKey() == izvodjac)
-                return naziv + "(" + pocetak + ")" + " " + izvodjac.nastup(this);
+                return naziv + "(" + pocetak + ")" + " " + izvodjac.toString() + ": " + par.getValue();
         return "";
     }
 
     public String ispisiRaspored() {
         String str = "Raspored:\n";
         for (Par par : raspored)
-            str += ((jeIzvodjac)par.getKey()).nastup(this) + " " + par.getValue() + "\n";
+            str += ((jeIzvodjac)par.getKey()).nastup(this) + "\n";
         return str;
     }
 }
