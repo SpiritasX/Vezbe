@@ -61,6 +61,7 @@
 #include <chrono>
 #include <random>
 #include <cmath>
+#include <fstream>
 
 typedef std::chrono::high_resolution_clock hrc_t;
 
@@ -72,20 +73,41 @@ int main() {
 	hrc_t::duration d = hrc_t::now() - start;
 	generator.seed(d.count());
 
-	std::normal_distribution<> dist{5, 2};
+	std::normal_distribution<> dist{0, 1};
 
-  int brojaci[10] = { 0 };
+  std::vector<int> brojaci(100);
 
-  for (int i = 0; i < 350; i++)
-    ++brojaci[(int)std::round(dist(generator))];
-
-  for (int i = 0; i < 10; i++) {
-    std::cout << i << "-" << i + 1 << ": ";
-    for (int j = 0; j < brojaci[i]; j++) {
-      std::cout << "*";
-    }
-    std::cout << std::endl;
+  for (int i = 0; i < 1500; i++) {
+    int idx = (int)std::floor(dist(generator) * 20 + 50);
+    //std::cout << idx << std::endl;
+    if (idx >= 0 && idx < 100)
+      ++brojaci[idx];
   }
+
+  std::ofstream output("output");
+
+  // for (int i = 0; i < 100; i++) {
+  //   output << i << "-" << i + 1 << ":";
+  //   for (int j = 0; j < brojaci[i]; j++)
+  //     output << "*";
+  //   output << "\n";
+  // }
   
+  int max = *std::max_element(brojaci.begin(), brojaci.end());
+
+  //std::cout << max;
+
+  for (int j = max; j > 0; j--) {
+    for (int i = 0; i < 100; i++) {
+      if (j <= brojaci[i])
+        output << "*";
+      else
+        output << " ";
+    }
+    output << std::endl;
+  }
+
+  output.close();
+
 	return 0;
 }
