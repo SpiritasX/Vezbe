@@ -73,12 +73,12 @@ int main() {
 	hrc_t::duration d = hrc_t::now() - start;
 	generator.seed(d.count());
 
-	std::normal_distribution<> dist{0, 1};
+	std::normal_distribution<> dist{5, 1.6};
 
   std::vector<int> brojaci(100);
 
   for (int i = 0; i < 1500; i++) {
-    int idx = (int)std::floor(dist(generator) * 20 + 50);
+    int idx = (int)std::floor(dist(generator) * 10);
     //std::cout << idx << std::endl;
     if (idx >= 0 && idx < 100)
       ++brojaci[idx];
