@@ -5,6 +5,7 @@ Korišćenjem STL algoritma sortirati brojeve u opadajućem redosledu.
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 int main()
 {
@@ -18,10 +19,7 @@ int main()
         input.push_back(temp);
     }
 
-    for (int i = 0; i < 4; i++)
-        for (int j = i + 1; j < 5; j++)
-            if (input.at(i) < input.at(j))
-                std::swap(input.at(i), input.at(j));
+    std::sort(input.begin(), input.end(), std::greater<int>());
     
     for (int i : input)
         std::cout << i << " ";

@@ -5,6 +5,7 @@ Korišćenjem STL algoritma, među tih 5 brojeva potrebno je pronaći najveći.
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 int main()
 {
@@ -18,13 +19,9 @@ int main()
         input.push_back(temp);
     }
 
-    int max = *(input.begin());
-
-    for (int i : input)
-        if (i > max)
-            max = i;
+    int max = *std::max_element(input.begin(), input.end());
     
-    std::cout << max;
+    std::cout << "Max: " << max << std::endl;
 
     return 0;
 }
