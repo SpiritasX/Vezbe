@@ -3,6 +3,7 @@
 
 #include "automobil.hpp"
 #include <mutex>
+#include <condition_variable>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ private:
     Automobil& automobil;
     Stanje stanje;
     mutex m;
+    condition_variable slobodan;
 public:
     Parking(Automobil& a) : automobil(a), stanje(SLOBODAN) {
         // Proširiti po potrebi ...
@@ -31,14 +33,14 @@ public:
     void udji(int rbr) {
         // Implementirati ...
         automobil.ceka(rbr);
-        while (true) {
-            unique_lock<mutex> lock(m);
-            if (stanje == Stanje::SLOBODAN) {
-                stanje = Stanje::ZAUZET;
-                automobil.parkira(rbr);
-                break;
-            }
-        }
+        unique_lock<mutex> lock(m);
+        // Mora biti while iako mi sami uvek pozivamo notify_one na dobar nacin
+        // Lazno budjenje moze da se desi
+        // wait_for
+        while (stanje == Stanje::ZAUZET)
+            slobodan.wait(lock);
+        stanje = Stanje::ZAUZET;
+        automobil.parkira(rbr);
     }
 
     // Metoda koju poziva nit koja simulira kretanje automobila kada auto izlazi sa parkinga (nakon što je bio parkiran).
@@ -48,9 +50,10 @@ public:
     // Potrebno je pozvati metodu automobil.napusta kada auto napušta parking mesto.
     void izadji(int rbr) {
         // Implementirati ...
-        automobil.napusta(rbr);
         unique_lock<mutex> lock(m);
+        automobil.napusta(rbr);
         stanje = Stanje::SLOBODAN;
+        slobodan.notify_one();
     }
 };
 
