@@ -51,7 +51,7 @@ void testirajNiti() {
 int main() {
     testirajSumu();
     // Otkomentarisati kada implementirate funkciju sumiraj:
-    //testirajNiti();
+    testirajNiti();
 
     return 0;
 }

@@ -14,6 +14,9 @@ zbir - parameter kroz koji funkcija treba da vrati izračunatu sumu
 */
 void f(ci pocetak, ci kraj, double& zbir) {
     // Implementirati ...
+    for (ci i = pocetak; i != kraj; i++) {
+        zbir += *i;
+    }
 }
 
 #endif // SUMA_VEKTORA_HPP_INCLUDED
