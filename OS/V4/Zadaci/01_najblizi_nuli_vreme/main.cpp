@@ -24,6 +24,7 @@ struct vreme {
 void f(cit pocetak, cit kraj, double & min, struct vreme * v) {
 	// Implementirati...
     (*v).pocetak = system_clock::now();
+    cout << (*v).pocetak.time_since_epoch().count() << endl;
     min = *pocetak;
     for (cit i = pocetak; i != kraj; i++)
         if (abs(*i) < abs(min))
@@ -32,10 +33,10 @@ void f(cit pocetak, cit kraj, double & min, struct vreme * v) {
 }
 
 const int BROJ_NITI = 3;
-const int DUZINA = 900000;
+const long DUZINA = 90000000;
 
 int main() {
-    int SEGMENT = DUZINA / BROJ_NITI;
+    long SEGMENT = DUZINA / BROJ_NITI;
     default_random_engine gen;
 
     gen.seed(duration_cast<milliseconds>(high_resolution_clock::now().time_since_epoch()).count());// Inicijalizacija generatora slučajnih brojeva da pri svakom pokretanju daje različite brojeve
