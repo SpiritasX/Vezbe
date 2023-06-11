@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Employees</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/css/employees.css"/>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/employees.js"></script>
+
+
+</head>
+<body>
+
+<div id="allEmployees">
+    <h1>Employees</h1>
+    <button onclick="location.href = 'add-employee.html'">Add new employee</button>
+    <br><br>
+    <div class="container">
+        <table id="employees">
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Pozicija</th>
+                <th>About</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="oneEmployee" hidden>
+    <div class="card">
+        <img alt="User" src="/images/user.png"/>
+        <h1 id="firstName"></h1>
+        <h1 id="lastName"></h1>
+        <p class="title" id="position"></p>
+        <br>
+    </div>
+</div>
+
+</body>
+</html>
