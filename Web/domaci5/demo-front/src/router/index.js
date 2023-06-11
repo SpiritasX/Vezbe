@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import EmployeesView from '../views/EmployeesView.vue'
 import EmployeeView from '../views/EmployeeView.vue'
 import AddEmployeeView from '../views/AddEmployeeView.vue'
+import EditEmployeeView from '../views/EditEmployeeView.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/add-employee',
     name: 'add-employee',
     component: AddEmployeeView
+  },
+  {
+    path: '/edit-employee',
+    name: 'edit-employee',
+    component: EditEmployeeView
   }
 ]
 

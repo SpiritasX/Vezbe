@@ -11,6 +11,7 @@
           <th>Pozicija</th>
           <th>About</th>
           <th>Delete</th>
+          <th>Edit</th>
         </tr>
         <!--<tr v-for="employee in employees" :key="employee.id">
           <td>{{ employee.firstName }}</td>
@@ -83,6 +84,9 @@ export default {
           window.location.reload();
         }
       });
+    },
+    editEmployee: function(employee) {
+      this.$router.push("/edit-employee?id=" + employee.id);
     },
   },
 };

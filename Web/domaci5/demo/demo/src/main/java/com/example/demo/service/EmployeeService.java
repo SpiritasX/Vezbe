@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Employee;
+import com.example.demo.entity.dto.EmployeeDTO;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface EmployeeService {
     void delete(Long id);
 
     List<Employee> findAll();
+
+    void edit(long id, EmployeeDTO employeeDTO);
 }

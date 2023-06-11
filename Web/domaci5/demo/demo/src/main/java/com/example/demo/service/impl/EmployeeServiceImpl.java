@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.Employee;
+import com.example.demo.entity.dto.EmployeeDTO;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +81,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> findAll() {
         List<Employee> employees = this.employeeRepository.findAll();
         return employees;
+    }
+
+    public void edit(long id, EmployeeDTO employeeDTO) {
+        Employee employee = findOne(id);
+        employee.setPosition(employeeDTO.getPosition());
+        employee.setFirstName(employeeDTO.getFirstName());
+        employee.setLastName(employeeDTO.getLastName());
+        employeeRepository.save(employee);
     }
 }

@@ -11,6 +11,11 @@
         Delete
       </button>
     </td>
+    <td>
+      <button class="edit" v-on:click="editEmployee">
+        Edit
+      </button>
+    </td>
   </tr>
 </template>
 
@@ -30,6 +35,9 @@ export default {
           window.location.reload();
         }
       });
+    },
+    editEmployee: function () {
+      this.$router.push("/edit-employee?id=" + this.employee.id);
     },
   },
 };

@@ -114,4 +114,10 @@ public class EmployeeController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity editEmployee(@PathVariable long id, @RequestBody EmployeeDTO employeeDTO) {
+        employeeService.edit(id, employeeDTO);
+        return ResponseEntity.ok("Izmenjen");
+    }
 }
